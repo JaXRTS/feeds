@@ -1,13 +1,6 @@
-[issues]
-title = "JaXRTS - Issues"
-url = "https://github.com/JaXRTS/jaxrts/issues?q=is%3Aissue"
-entrySelector = "div.ListItems-module__listItem__EaWcf"
-titleSelector = "h3"
-linkSelector = "a"
-
-[prs]
-title = "JaXRTS - Pull Requests"
-url = "https://github.com/JaXRTS/jaxrts/pulls?q=is%3Apr"
-entrySelector = "div[js-navigation-item]"
-titleSelector = "a"
-linkSelector = "a"
+[funfacts]
+title = "Wikipedia — did you know?"
+url = "https://en.wikipedia.org/wiki/Main_Page"
+entrySelector = "#mp-dyk > ul li"
+titleSelector = "b"
+linkSelector = "b a"
