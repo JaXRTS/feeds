@@ -10,6 +10,11 @@ on:
     - cron:  '30 5,17 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 env:
   CI: true
 jobs:
@@ -22,19 +27,9 @@ jobs:
     # GitHub Actions unfortunately does not support retries;
     # this is a cumbersome method of retrying twice in case of errors:
     - run: npx feed-me-up-scotty || npx feed-me-up-scotty || npx feed-me-up-scotty
-    - name: Deploy to GitHub Pages
-      run: |
-        git config user.name $GITHUB_ACTOR
-        git config user.email $GITHUB_ACTOR@users.noreply.github.com
-        git remote add gh-pages-remote https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
-        git fetch --no-recurse-submodules
-        git worktree add ./gh-pages gh-pages
-        cd gh-pages
-        git rm -r .
-        cp -r ../public/. .
-        git add .
-        git commit --message="Deploying to GitHub Pages from $GITHUB_SHA"
-        git push gh-pages-remote gh-pages:gh-pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ github.repository }}
+    - uses: actions/configure-pages@v5
+    - uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./public
+    - id: deployment
+      uses: actions/deploy-pages@v4
