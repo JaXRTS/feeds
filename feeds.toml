@@ -7,7 +7,7 @@ linkSelector = "a"
 
 [prs]
 title = "JaXRTS - Pull Requests"
-url = "https://github.com/JaXRTS/jaxrts/pulls?q=is%3Apr"
-entrySelector = "div[js-navigation-item]"
-titleSelector = "a"
+url = "https://github.com/JaXRTS/jaxrts/issues?q=is%3Apr"
+entrySelector = "div.ListItems-module__listItem__EaWcf"
+titleSelector = "h3"
 linkSelector = "a"
